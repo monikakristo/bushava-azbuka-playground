@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -140,5 +141,48 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: "Nunito", system-ui, sans-serif;
+  }
+
+  .font-display {
+    font-family: "Fredoka", "Nunito", system-ui, sans-serif;
+    letter-spacing: -0.01em;
   }
 }
+
+@theme inline {
+  --color-sky: var(--sky);
+  --color-grass: var(--grass);
+  --color-sun: var(--sun);
+  --color-coral: var(--coral);
+  --color-cream: var(--cream);
+  --color-grape: var(--grape);
+  --color-berry: var(--berry);
+}
+
+:root {
+  --sky: oklch(0.86 0.07 235);
+  --grass: oklch(0.78 0.17 140);
+  --sun: oklch(0.88 0.15 90);
+  --coral: oklch(0.74 0.17 30);
+  --cream: oklch(0.97 0.03 90);
+  --grape: oklch(0.62 0.21 295);
+  --berry: oklch(0.68 0.21 0);
+  --shadow-fuzzy: 0 10px 0 0 oklch(0 0 0 / 0.08), 0 18px 30px -12px oklch(0 0 0 / 0.25);
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes drift-x {
+  0% { transform: translateX(-30px); }
+  100% { transform: translateX(calc(100vw + 30px)); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+.animate-float { animation: float-y 4s ease-in-out infinite; }
+.animate-wiggle { animation: wiggle 2.5s ease-in-out infinite; }
+
