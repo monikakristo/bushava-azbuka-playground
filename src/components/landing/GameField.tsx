@@ -52,7 +52,7 @@ export function GameField({ onSelect }: { onSelect: (g: Game) => void }) {
       style={{ height: `${fieldVh}vh` }}
       aria-label="Мапа со игри"
     >
-      <FieldDecor count={Math.round(fieldVh / 7)} />
+      <FieldDecor count={Math.round(fieldVh / 2.5)} />
 
       {/* Wider winding path */}
       <svg
@@ -202,16 +202,22 @@ function FieldDecor({ count }: { count: number }) {
         return (
           <div
             key={it.key}
-            className={`pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 ${animClass}`}
+            className="pointer-events-none absolute"
             style={{
               left: `${it.x}%`,
               top: `${it.y}%`,
               width: `${it.size * baseSize}px`,
               height: `${it.size * baseSize}px`,
-              animationDelay: `${it.delay}s`,
-              transformOrigin: "50% 90%",
+              transform: "translate(-50%, -50%)",
             }}
           >
+            <div
+              className={`h-full w-full ${animClass}`}
+              style={{
+                animationDelay: `${it.delay}s`,
+                transformOrigin: "50% 90%",
+              }}
+            >
             {it.kind === "tree" && (
               <svg viewBox="0 0 64 64" className="h-full w-full drop-shadow-[0_4px_4px_rgba(0,0,0,0.15)]">
                 <ellipse cx="32" cy="58" rx="14" ry="3" fill="rgba(0,0,0,0.18)" />
