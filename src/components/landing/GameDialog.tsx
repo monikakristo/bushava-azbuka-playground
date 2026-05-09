@@ -1,4 +1,5 @@
 import { toast } from "sonner";
+import { Check, X } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -27,9 +28,18 @@ export function GameDialog({
 }) {
   return (
     <Dialog open={!!game} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent className="overflow-hidden rounded-3xl border-4 border-white p-0 sm:max-w-md">
+      <DialogContent className="overflow-hidden rounded-3xl border-4 border-white p-0 sm:max-w-md [&>button]:hidden">
         {game && (
           <>
+            {/* Custom large close button */}
+            <button
+              onClick={onClose}
+              aria-label="Затвори"
+              className="absolute right-3 top-3 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white text-foreground shadow-lg transition hover:scale-110 active:scale-95"
+            >
+              <X className="h-7 w-7" strokeWidth={3} />
+            </button>
+
             <div
               className="flex items-center justify-center py-8"
               style={{ backgroundColor: `color-mix(in oklab, ${ACCENT_VAR[game.accent]} 25%, white)` }}
@@ -45,28 +55,30 @@ export function GameDialog({
             <div className="space-y-4 p-6 text-center">
               <DialogHeader>
                 <DialogTitle className="font-display text-3xl text-foreground">
-                  {game.emoji} {game.title}
+                  {game.title}
                 </DialogTitle>
                 <DialogDescription className="text-base text-muted-foreground">
                   {game.description}
                 </DialogDescription>
               </DialogHeader>
-              <div className="flex flex-col gap-2 pt-2">
+              <div className="flex items-stretch justify-center gap-3 pt-2">
+                <button
+                  onClick={onClose}
+                  aria-label="Затвори"
+                  className="flex min-h-14 flex-1 items-center justify-center rounded-2xl bg-[oklch(0.65_0.22_25)] px-6 py-4 text-white shadow-[0_5px_0_oklch(0.45_0.18_25)] transition active:translate-y-0.5 active:shadow-[0_2px_0_oklch(0.45_0.18_25)]"
+                >
+                  <X className="h-8 w-8" strokeWidth={4} />
+                </button>
                 <button
                   onClick={() => {
-                    toast.success("Демо наскоро! 🎉", {
+                    toast.success("Демо наскоро!", {
                       description: `„${game.title}" се подготвува за тебе.`,
                     });
                   }}
-                  className="rounded-full bg-coral px-6 py-3 text-base font-extrabold text-white shadow-[0_6px_0_oklch(0.55_0.17_30)] transition active:translate-y-0.5 active:shadow-[0_2px_0_oklch(0.55_0.17_30)]"
+                  aria-label="Играј демо"
+                  className="flex min-h-14 flex-1 items-center justify-center rounded-2xl bg-[oklch(0.7_0.2_145)] px-6 py-4 text-white shadow-[0_5px_0_oklch(0.5_0.16_145)] transition active:translate-y-0.5 active:shadow-[0_2px_0_oklch(0.5_0.16_145)]"
                 >
-                  Играј демо ▶
-                </button>
-                <button
-                  onClick={onClose}
-                  className="rounded-full px-6 py-2 text-sm font-bold text-muted-foreground hover:text-foreground"
-                >
-                  Затвори
+                  <Check className="h-8 w-8" strokeWidth={4} />
                 </button>
               </div>
             </div>

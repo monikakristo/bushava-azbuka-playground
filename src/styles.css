@@ -186,6 +186,28 @@
 .animate-float { animation: float-y 4s ease-in-out infinite; }
 .animate-wiggle { animation: wiggle 2.5s ease-in-out infinite; }
 
+@keyframes sway {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50% { transform: rotate(2.5deg); }
+}
+@keyframes bush-shake {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  25% { transform: translateX(-1.5px) rotate(-2deg); }
+  75% { transform: translateX(1.5px) rotate(2deg); }
+}
+@keyframes hop {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes sign-bob {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+.animate-sway { animation: sway 3.6s ease-in-out infinite; }
+.animate-bush-shake { animation: bush-shake 1.8s ease-in-out infinite; }
+.animate-hop { animation: hop 1.6s ease-in-out infinite; }
+.animate-sign-bob { animation: sign-bob 1.4s ease-in-out infinite; transform-origin: 50% 90%; }
+
 /* Top-down grass field background — tileable, no image required. */
 .field-grass {
   background-color: oklch(0.78 0.14 142);
