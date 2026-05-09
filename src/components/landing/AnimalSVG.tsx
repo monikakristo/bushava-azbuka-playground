@@ -162,20 +162,21 @@ function AnimalBody({ kind }: { kind: AnimalKind }) {
 }
 
 export function AnimalSVG({ kind, signColor, signTexture, facing, className }: Props) {
-  // animal stays in center, sign hovers above-side
   return (
-    <div className={className}>
-      <div className="relative h-full w-full">
-        <div className="absolute inset-x-[10%] bottom-0 top-[35%] animate-hop">
-          <AnimalBody kind={kind} />
-        </div>
-        <div
-          className={`absolute top-0 h-[55%] w-[80%] animate-sign-bob ${
-            facing === "left" ? "left-[-30%]" : "right-[-30%]"
-          }`}
-        >
-          <SignArrow color={signColor} texture={signTexture} direction={facing === "left" ? "right" : "left"} />
-        </div>
+    <div className={`relative h-full w-full ${className ?? ""}`}>
+      <div className="absolute inset-x-[5%] bottom-0 top-[35%] animate-hop">
+        <AnimalBody kind={kind} />
+      </div>
+      <div
+        className={`absolute top-0 h-[55%] w-[85%] animate-sign-bob ${
+          facing === "left" ? "left-[-35%]" : "right-[-35%]"
+        }`}
+      >
+        <SignArrow
+          color={signColor}
+          texture={signTexture}
+          direction={facing === "left" ? "right" : "left"}
+        />
       </div>
     </div>
   );
