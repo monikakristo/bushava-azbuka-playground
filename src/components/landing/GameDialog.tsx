@@ -6,7 +6,17 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { HouseSVG } from "./HouseSVG";
 import type { Game } from "@/data/games";
+
+const ACCENT_VAR: Record<Game["accent"], string> = {
+  coral: "var(--coral)",
+  grass: "var(--grass)",
+  sun: "var(--sun)",
+  grape: "var(--grape)",
+  berry: "var(--berry)",
+  sky: "var(--sky)",
+};
 
 export function GameDialog({
   game,
@@ -21,9 +31,16 @@ export function GameDialog({
         {game && (
           <>
             <div
-              className={`flex items-center justify-center py-10 text-7xl ${game.color}`}
+              className="flex items-center justify-center py-8"
+              style={{ backgroundColor: `color-mix(in oklab, ${ACCENT_VAR[game.accent]} 25%, white)` }}
             >
-              <span className="animate-wiggle inline-block">{game.house}</span>
+              <div className="h-32 w-32 animate-wiggle">
+                <HouseSVG
+                  kind={game.kind}
+                  accent={ACCENT_VAR[game.accent]}
+                  className="h-full w-full"
+                />
+              </div>
             </div>
             <div className="space-y-4 p-6 text-center">
               <DialogHeader>

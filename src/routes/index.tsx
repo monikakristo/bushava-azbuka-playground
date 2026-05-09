@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
-import { Hero } from "@/components/landing/Hero";
-import { GameMap } from "@/components/landing/GameMap";
+import { Intro } from "@/components/landing/Intro";
+import { GameField } from "@/components/landing/GameField";
 import { GameDialog } from "@/components/landing/GameDialog";
 import { Footer } from "@/components/landing/Footer";
 import type { Game } from "@/data/games";
@@ -29,17 +29,19 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const [selected, setSelected] = useState<Game | null>(null);
-
-  const scrollToMap = () => {
-    document.getElementById("map")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const [unlocked, setUnlocked] = useState(false);
 
   return (
     <main className="min-h-screen bg-cream">
-      <Hero onStart={scrollToMap} />
-      <GameMap onSelect={setSelected} />
-      <Footer />
+      <div
+        aria-hidden={!unlocked}
+        style={{ pointerEvents: unlocked ? "auto" : "none" }}
+      >
+        <GameField onSelect={setSelected} />
+        <Footer />
+      </div>
       <GameDialog game={selected} onClose={() => setSelected(null)} />
+      {!unlocked && <Intro onDone={() => setUnlocked(true)} />}
       <Toaster position="top-center" richColors />
     </main>
   );
