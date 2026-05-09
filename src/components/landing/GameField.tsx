@@ -258,6 +258,7 @@ function FieldDecor({ count }: { count: number }) {
                 <path d="M8 18 Q12 14 18 16" stroke="oklch(0.75 0.02 250)" strokeWidth="1.2" fill="none" />
               </svg>
             )}
+            </div>
           </div>
         );
       })}
